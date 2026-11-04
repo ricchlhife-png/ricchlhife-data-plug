@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#facc15">
+<title>RICCHLHIFE DATA PLUG</title>
+<style>
+:root{--yellow:#facc15;--ink:#171717;--muted:#666;--bg:#f7f7f5;--card:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--ink);color:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:900;letter-spacing:.4px}.brand span{color:var(--yellow)}
+header small{color:#ddd}.hero{padding:48px 5%;background:linear-gradient(120deg,#facc15,#ffe98a);text-align:center}
+.hero h1{font-size:clamp(30px,6vw,52px);margin:0 0 12px}.hero p{max-width:600px;margin:0 auto 20px;line-height:1.5}
+.pill{display:inline-block;background:#171717;color:white;border-radius:30px;padding:9px 15px;font-size:13px;font-weight:bold}
+main{max-width:1050px;margin:30px auto;padding:0 16px}
+.notice{background:#fff8d8;border:1px solid #f1d46a;padding:13px 15px;border-radius:12px;font-size:14px;line-height:1.5;margin-bottom:22px}
+h2{margin:0 0 15px;font-size:24px}.networks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.network{border:2px solid transparent;background:white;border-radius:14px;padding:17px;text-align:center;font-weight:800;cursor:pointer;box-shadow:0 2px 10px #0000000a}
+.network.active{border-color:#171717;background:#fff7cc}.network small{display:block;color:var(--muted);font-weight:normal;margin-top:5px}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:white;border-radius:16px;padding:20px;box-shadow:0 3px 15px #0000000a}
+label{display:block;font-size:14px;font-weight:bold;margin:13px 0 7px}select,input{width:100%;padding:13px;border:1px solid #ccc;border-radius:9px;font-size:16px;background:white}
+.summary{background:#f6f6f3;border-radius:12px;padding:15px;margin-top:15px;line-height:1.8}.price{font-size:28px;font-weight:900}
+button{border:0;background:var(--ink);color:white;padding:14px 18px;border-radius:10px;font-weight:bold;font-size:15px;width:100%;margin-top:16px;cursor:pointer}
+button:disabled{background:#999;cursor:not-allowed}
+.note{font-size:12px;color:var(--muted);line-height:1.5}.status{margin-top:12px;font-size:14px;line-height:1.5}
+footer{text-align:center;padding:25px 15px;color:#666;font-size:13px}
+@media(max-width:700px){.networks{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.hero{padding:38px 18px}}
+</style>
+</head>
+<body>
+<header><div class="brand">RICCHLHIFE <span>DATA PLUG</span></div><small>Ghana • Data bundles</small></header>
+<section class="hero">
+  <div class="pill">FAST • SIMPLE • CONVENIENT</div>
+  <h1>Stay connected for less.</h1>
+  <p>Choose your network, select a data bundle and prepare your order. We're getting our secure payment and automatic delivery systems ready.</p>
+</section>
+<main>
+  <div class="notice"><strong>Demo website:</strong> This is the first design version. Payments and automatic data delivery are not connected yet. Do not enter payment details or send money through this demo.</div>
+  <h2>Choose your network</h2>
+  <div class="networks">
+    <button class="network active" data-network="MTN">🟡 MTN<small>Data bundles</small></button>
+    <button class="network" data-network="Telecel">🔴 Telecel<small>Data bundles</small></button>
+    <button class="network" data-network="AT">🔵 AT<small>Data bundles</small></button>
+  </div>
+  <div class="layout">
+    <section class="panel">
+      <h2>Build your order</h2>
+      <label for="bundle">Select bundle</label>
+      <select id="bundle">
+        <option value="1|6">1GB — GH₵6</option>
+        <option value="2|12">2GB — GH₵12</option>
+        <option value="3|18">3GB — GH₵18</option>
+        <option value="5|30">5GB — GH₵30</option>
+        <option value="10|60">10GB — GH₵60</option>
+        <option value="20|120">20GB — GH₵120</option>
+      </select>
+      <label for="phone">Recipient phone number</label>
+      <input id="phone" type="tel" inputmode="tel" placeholder="e.g. 0241234567" maxlength="15">
+      <div class="summary">
+        <div>Network: <strong id="networkText">MTN</strong></div>
+        <div>Bundle: <strong id="bundleText">1GB</strong></div>
+        <div>Total: <div class="price" id="price">GH₵6.00</div></div>
+      </div>
+      <button id="prepare">Prepare order (demo only)</button>
+      <div id="status" class="status" aria-live="polite"></div>
+    </section>
+    <section class="panel">
+      <h2>How ordering will work</h2>
+      <p>1. Select a network and bundle.</p>
+      <p>2. Enter the number that should receive the data.</p>
+      <p>3. Pay securely using Mobile Money.</p>
+      <p>4. Our supplier sends the data after payment is confirmed.</p>
+      <hr style="border:0;border-top:1px solid #eee;margin:18px 0">
+      <h2>Coming next</h2>
+      <p>✓ Secure checkout integration</p>
+      <p>✓ Verified data supplier connection</p>
+      <p>✓ Automatic delivery and order tracking</p>
+      <p class="note">Bundle prices shown are editable sample prices based on the starting MTN price list supplied by the business owner. Confirm supplier costs and current selling prices before launch. Telecel and AT prices must be added after confirmation.</p>
+    </section>
+  </div>
+</main>
+<footer>© 2026 RICCHLHIFE DATA PLUG. All rights reserved.</footer>
+<script>
+let network="MTN";
+const bundle=document.getElementById("bundle");
+function update(){
+ const [gb,price]=bundle.value.split("|");
+ document.getElementById("networkText").textContent=network;
+ document.getElementById("bundleText").textContent=gb+"GB";
+ document.getElementById("price").textContent="GH₵"+Number(price).toFixed(2);
+}
+document.querySelectorAll(".network").forEach(btn=>btn.addEventListener("click",()=>{
+ document.querySelectorAll(".network").forEach(b=>b.classList.remove("active"));
+ btn.classList.add("active");network=btn.dataset.network;update();
+}));
+bundle.addEventListener("change",update);
+document.getElementById("prepare").addEventListener("click",()=>{
+ const phone=document.getElementById("phone").value.trim();
+ const status=document.getElementById("status");
+ if(!/^(0\d{9}|\+233\d{9})$/.test(phone)){
+  status.textContent="Please enter a valid Ghanaian phone number (e.g. 0241234567).";return;
+ }
+ const [gb,price]=bundle.value.split("|");
+ status.textContent=`Demo order prepared: ${network}, ${gb}GB for ${phone}, total GH₵${Number(price).toFixed(2)}. No payment has been taken and no data has been sent.`;
+});
+update();
+</script>
+</body>
+</html>
