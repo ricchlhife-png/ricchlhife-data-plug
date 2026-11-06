@@ -49,6 +49,52 @@ button:disabled{background:#999;cursor:not-allowed}
 .note{font-size:12px;color:var(--muted);line-height:1.5}.status{margin-top:12px;font-size:14px;line-height:1.5}
 footer{text-align:center;padding:25px 15px;color:#666;font-size:13px}
 @media(max-width:700px){.networks{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.hero{padding:38px 18px}}
+  .bundle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.bundle-card {
+  min-height: 95px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 15px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #172554 !important;
+  box-shadow: 0 3px 10px #00000012;
+}
+
+.bundle-card strong {
+  font-size: 22px;
+  font-weight: 900;
+  color: #172554 !important;
+}
+
+.bundle-card span {
+  font-size: 15px;
+  font-weight: 800;
+  color: #172554 !important;
+}
+
+.bundle-card:nth-child(6n+1) { background: #dbeafe; }
+.bundle-card:nth-child(6n+2) { background: #dcfce7; }
+.bundle-card:nth-child(6n+3) { background: #fef3c7; }
+.bundle-card:nth-child(6n+4) { background: #fce7f3; }
+.bundle-card:nth-child(6n+5) { background: #ede9fe; }
+.bundle-card:nth-child(6n+6) { background: #ffedd5; }
+
+.bundle-card.selected {
+  border-color: #2563eb;
+  outline: 2px solid #2563eb;
+  transform: scale(1.02);
+}
 </style>
 </head>
 <body>
@@ -81,18 +127,41 @@ footer{text-align:center;padding:25px 15px;color:#666;font-size:13px}
   <div class="layout">
     <section class="panel" id="order">
       <h2>Build your order</h2>
-      <label for="bundle">Select bundle</label>
-<select id="bundle">
-  <option value="1|5.5">1GB — GH₵5.50</option>
-<option value="2|11">2GB — GH₵11.00</option>
-<option value="3|16.5">3GB — GH₵16.50</option>
-<option value="4|22">4GB — GH₵22.00</option>
-<option value="5|27.5">5GB — GH₵27.50</option>
-<option value="6|33">6GB — GH₵33.00</option>
-<option value="10|55">10GB — GH₵55.00</option>
-<option value="15|82.5">15GB — GH₵82.50</option>
-<option value="20|110">20GB — GH₵110.00</option>
+      <label>Select your data bundle</label>
+
+<div class="bundle-grid">
+  <button type="button" class="bundle-card selected" data-value="1|5.5">
+    <strong>1GB</strong><span>GH₵5.50</span>
+  </button>
+  <button type="button" class="bundle-card" data-value="2|11">
+    <strong>2GB</strong><span>GH₵11.00</span>
+  </button>
+  <button type="button" class="bundle-card" data-value="3|16.5">
+    <strong>3GB</strong><span>GH₵16.50</span>
+  </button>
+  <button type="button" class="bundle-card" data-value="4|22">
+    <strong>4GB</strong><span>GH₵22.00</span>
+  </button>
+  <button type="button" class="bundle-card" data-value="5|27.5">
+    <strong>5GB</strong><span>GH₵27.50</span>
+  </button>
+  <button type="button" class="bundle-card" data-value="6|33">
+    <strong>6GB</strong><span>GH₵33.00</span>
+  </button>
+  <button type="button" class="bundle-card" data-value="10|55">
+    <strong>10GB</strong><span>GH₵55.00</span>
+  </button>
+  <button type="button" class="bundle-card" data-value="15|82.5">
+    <strong>15GB</strong><span>GH₵82.50</span>
+  </button>
+  <button type="button" class="bundle-card" data-value="20|110">
+    <strong>20GB</strong><span>GH₵110.00</span>
+  </button>
+</div>
+
+
 </select>
+  
       <label for="phone">Recipient phone number</label>
       <input id="phone" type="tel" inputmode="tel" placeholder="e.g. 0241234567" maxlength="15">
       <div class="summary">
@@ -133,6 +202,18 @@ document.querySelectorAll(".network").forEach(btn=>btn.addEventListener("click",
  btn.classList.add("active");network=btn.dataset.network;update();
 }));
 bundle.addEventListener("change",update);
+  document.querySelectorAll(".bundle-card").forEach(card => {
+  card.addEventListener("click", () => {
+    bundle.value = card.dataset.value;
+
+    document.querySelectorAll(".bundle-card").forEach(c => {
+      c.classList.remove("selected");
+    });
+
+    card.classList.add("selected");
+    update();
+  });
+});
 document.getElementById("prepare").addEventListener("click",()=>{
  const phone=document.getElementById("phone").value.trim();
  const status=document.getElementById("status");
